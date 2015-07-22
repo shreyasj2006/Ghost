@@ -16,12 +16,12 @@ public class Dictionary {
     public void addWord(String word) {
         if(this.nodeMap.containsKey(word.charAt(0))) {
             // If a graph already exists for a character, insert new word's characters as nodes
-            this.nodeMap.get(word.charAt(0)).addWord(word);
+            this.nodeMap.get(word.charAt(0)).addWord(word,1);
         } else {
             // If a graph doesn't exist for a character, create a new node with first character
             // of the word and insert the remaining characters to the graph
             Node node = new Node(word.charAt(0));
-            node.addWord(word);                     // Insert remaining chars into graph
+            node.addWord(word,1);                     // Insert remaining chars into graph
             this.nodeMap.put(word.charAt(0),node);
         }
 
@@ -33,5 +33,13 @@ public class Dictionary {
             wordList.add(word);
             this.words.put(word.charAt(0), wordList);
         }
+    }
+
+    public HashMap<Character,Node> getNodeMap() {
+        return this.nodeMap;
+    }
+
+    public ArrayList<String> getWords(char c) {
+        return this.words.get(c);
     }
 }

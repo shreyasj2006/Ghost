@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.logging.Logger;
 
 /**
@@ -15,9 +12,14 @@ public class Main {
         try {
             BufferedReader br = new BufferedReader(new FileReader(filename));
             String word;
+            int count = 0;
+            System.out.println("Loading dictionary... please wait!");
             while((word = br.readLine()) != null) {
                 dict.addWord(word);
+                ++count;
             }
+            System.out.println("Dictionary is up & loaded! Let's play!!");
+
         } catch (FileNotFoundException e) {
             log.severe("Words file not found!");
         } catch (IOException e) {
@@ -28,7 +30,12 @@ public class Main {
     public static void main(String[] args) {
         Dictionary dict = new Dictionary();
         setupDictionary(dict, "words.txt");
+
+        Ghost game = new Ghost(dict);
+        game.play();
     }
+
+
 
 
 }
