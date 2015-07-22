@@ -1,18 +1,34 @@
+/*
+    Dictionary.java
+    v 1.0
+    Author: Shreyas Jayanna
+    Date: 7/22/15
+*/
+
+// Import statements
 import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Created by Shreyas on 7/21/2015.
+ * Class Dictionary
+ * This class defines a dictionary to store words
  */
 public class Dictionary {
     HashMap<Character,Node> nodeMap;
     HashMap<Character,ArrayList<String>> words;
 
+    /**
+     * Constructor
+     */
     Dictionary() {
         this.nodeMap = new HashMap<Character, Node>();
         this.words = new HashMap<Character, ArrayList<String>>();
     }
 
+    /**
+     * This method adds a word to the dictionary
+     * @param word  The word to be inserted in the dictionary
+     */
     public void addWord(String word) {
         if(this.nodeMap.containsKey(word.charAt(0))) {
             // If a graph already exists for a character, insert new word's characters as nodes
@@ -35,10 +51,11 @@ public class Dictionary {
         }
     }
 
-    public HashMap<Character,Node> getNodeMap() {
-        return this.nodeMap;
-    }
-
+    /**
+     * This method returns the words from the dictionary which start with a specific letter
+     * @param c The starting letter of words
+     * @return  List of words which start with the passed letter
+     */
     public ArrayList<String> getWords(char c) {
         return this.words.get(c);
     }
